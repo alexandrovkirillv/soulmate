@@ -4,9 +4,9 @@ plugins {
 	id 'java'
 }
 
-group = 'com.secretNet'
+group = 'com.soulmate'
 version = "${project.findProperty('buildVersion') ?: '1.0.0-SNAPSHOT'}"
-archivesBaseName = 'secretnet'
+archivesBaseName = 'soulmate'
 sourceCompatibility = '15'
 
 configurations {

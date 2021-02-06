@@ -1,4 +1,4 @@
-package com.soulmate.soulmate.models;
+package com.soulmate.models;
 
 import org.springframework.security.core.GrantedAuthority;
 

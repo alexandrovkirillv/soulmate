@@ -1,4 +1,4 @@
-package com.soulmate.soulmate.models;
+package com.soulmate.models;
 
 import lombok.Data;
 import org.springframework.boot.autoconfigure.domain.EntityScan;

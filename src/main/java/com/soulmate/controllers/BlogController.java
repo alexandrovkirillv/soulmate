@@ -1,8 +1,8 @@
-package com.soulmate.soulmate.controllers;
+package com.soulmate.controllers;
 
-import com.soulmate.soulmate.models.Post;
-import com.soulmate.soulmate.models.User;
-import com.soulmate.soulmate.repo.PostRepository;
+import com.soulmate.models.User;
+import com.soulmate.repo.PostRepository;
+import com.soulmate.models.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static com.soulmate.soulmate.models.Post.ASIA_NOVOSIBIRSK;
-import static com.soulmate.soulmate.models.Post.DATE_FORMAT;
+import static com.soulmate.models.Post.ASIA_NOVOSIBIRSK;
+import static com.soulmate.models.Post.DATE_FORMAT;
 
 
 @Controller
