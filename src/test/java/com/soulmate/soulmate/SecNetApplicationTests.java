@@ -1,4 +1,4 @@
-package com.secretNet.secNet;
+package com.soulmate.soulmate;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

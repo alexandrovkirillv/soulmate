@@ -1,6 +1,6 @@
-package com.secretNet.secNet.repo;
+package com.soulmate.soulmate.repo;
 
-import com.secretNet.secNet.models.User;
+import com.soulmate.soulmate.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepo extends JpaRepository<User, Long> {
