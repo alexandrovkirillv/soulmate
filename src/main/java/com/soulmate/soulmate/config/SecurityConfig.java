@@ -1,6 +1,6 @@
-package com.secretNet.soulmate.config;
+package com.soulmate.soulmate.config;
 
-import com.secretNet.soulmate.service.MyUserDetailsService;
+import com.soulmate.soulmate.service.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
