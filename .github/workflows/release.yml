@@ -4,7 +4,7 @@ on:
   push:
     branches: [ '*' ]
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
 
 jobs:
 
@@ -141,7 +141,7 @@ jobs:
       - name: Define version suffix
         id: version_suffix
         run: |
-          if [[ "${BRANCH_NAME}" == "master" ]]; then
+          if [[ "${BRANCH_NAME}" == "main" ]]; then
             short_suffix=""
             long_suffix=""
           else
@@ -203,7 +203,7 @@ jobs:
 
     if: >
       needs.validate_new_version.outputs.can_create == 'true' &&
-      needs.validate_new_version.outputs.branch_name == 'master' &&
+      needs.validate_new_version.outputs.branch_name == 'main' &&
       github.event_name == 'push'
 
     steps:
@@ -283,7 +283,7 @@ jobs:
       - name: Define version suffix
         id: version_suffix
         run: |
-          if [[ "${BRANCH_NAME}" == "master" ]]; then
+          if [[ "${BRANCH_NAME}" == "main" ]]; then
             short_suffix=""
             long_suffix=""
           else
@@ -383,7 +383,7 @@ jobs:
         id: create_release
         if: >
           env.CAN_CREATE_RELEASE == 'true' &&
-          env.BRANCH_NAME == 'master' &&
+          env.BRANCH_NAME == 'main' &&
           github.event_name == 'push'
         uses: actions/create-release@v1
         env:
@@ -398,7 +398,7 @@ jobs:
       - name: Upload a Release Asset
         if: >
           env.CAN_CREATE_RELEASE == 'true' &&
-          env.BRANCH_NAME == 'master' &&
+          env.BRANCH_NAME == 'main' &&
           github.event_name == 'push'
         uses: actions/upload-release-asset@v1.0.2
         env:
