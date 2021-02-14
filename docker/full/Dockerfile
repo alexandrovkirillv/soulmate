@@ -7,7 +7,7 @@ WORKDIR /src
 ADD . /src
 
 RUN sh gradlew build -PbuildVersion="${BUILD_VERSION}"
-RUN cp -v build/libs/secretnet-*.jar /app.jar
+RUN cp -v build/libs/soulmate-*.jar /app.jar
 
 FROM openjdk:15
 
