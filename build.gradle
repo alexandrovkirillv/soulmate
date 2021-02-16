@@ -4,9 +4,9 @@ plugins {
 	id 'java'
 }
 
-group = 'com.soulmate'
+group = 'com.findsoulmate'
 version = "${project.findProperty('buildVersion') ?: '1.0.0-SNAPSHOT'}"
-archivesBaseName = 'soulmate'
+archivesBaseName = 'findsoulmate'
 sourceCompatibility = '15'
 
 configurations {
