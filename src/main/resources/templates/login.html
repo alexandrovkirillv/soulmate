@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-
+<header th:insert="blocks/header :: header"></header>
 <div class="container mt-5 mb-5">
     <div class="form-control is-invalid" th:if="${param.error}">
         Invalid username and password.

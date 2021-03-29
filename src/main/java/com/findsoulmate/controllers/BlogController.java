@@ -1,8 +1,8 @@
 package com.findsoulmate.controllers;
 
+import com.findsoulmate.models.Post;
 import com.findsoulmate.models.User;
 import com.findsoulmate.repo.PostRepository;
-import com.findsoulmate.models.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -33,7 +33,7 @@ public class BlogController {
                 .sorted(Comparator.reverseOrder())
                 .collect(Collectors.toList());
         if (user != null) {
-            model.addAttribute("user", "Приветствую, " + user.getUsername());
+            model.addAttribute("user", "Bonjour, " + user.getUsername());
         }
         model.addAttribute("posts", posts);
         return "blog-main";
@@ -52,15 +52,7 @@ public class BlogController {
         return REDIRECT_BLOG;
     }
 
-    @GetMapping("/blog/{id}")
-    public String blogDetails(@PathVariable(value = "id") long id, Model model) {
-        if (getPost(id, model)) {
-            return REDIRECT_BLOG;
-        }
-        return "blog-details";
-    }
-
-    private boolean getPost(@PathVariable("id") long id, Model model) {
+    private boolean getPost(@PathVariable(value = "id") long id, Model model) {
         if (!postRepository.existsById(id)) {
             return true;
         }
@@ -101,5 +93,4 @@ public class BlogController {
         postRepository.delete(post);
         return REDIRECT_BLOG;
     }
-
 }
