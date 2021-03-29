@@ -1,6 +1,6 @@
-package com.soulmate.service;
+package com.findsoulmate.service;
 
-import com.soulmate.repo.UserRepo;
+import com.findsoulmate.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

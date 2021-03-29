@@ -1,6 +1,6 @@
-package com.soulmate.config;
+package com.findsoulmate.config;
 
-import com.soulmate.service.MyUserDetailsService;
+import com.findsoulmate.service.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
