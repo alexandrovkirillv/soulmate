@@ -1,9 +1,8 @@
 package com.findsoulmate.controllers;
 
 import com.findsoulmate.models.Post;
-import com.findsoulmate.models.User;
 import com.findsoulmate.repo.PostRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,27 +12,26 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 import static com.findsoulmate.models.Post.ASIA_NOVOSIBIRSK;
 import static com.findsoulmate.models.Post.DATE_FORMAT;
 
 
 @Controller
+@RequiredArgsConstructor
 public class BlogController {
 
     public static final String REDIRECT_BLOG = "redirect:/blog";
-    @Autowired
-    private PostRepository postRepository;
+    private final PostRepository postRepository;
 
     @GetMapping("/blog")
-    public String blogMain(@AuthenticationPrincipal User user, Model model) {
+    public String blogMain(@AuthenticationPrincipal String customerName, Model model) {
         Iterable<Post> posts = postRepository.findAll()
                 .stream()
                 .sorted(Comparator.reverseOrder())
-                .collect(Collectors.toList());
-        if (user != null) {
-            model.addAttribute("user", "Bonjour, " + user.getUsername());
+                .toList();
+        if (customerName != null) {
+            model.addAttribute("customer", "Bonjour, " + customerName);
         }
         model.addAttribute("posts", posts);
         return "blog-main";
@@ -45,9 +43,10 @@ public class BlogController {
     }
 
     @PostMapping("/blog/add")
-    public String blogPostAdd(@RequestParam String title, String anons, String full_text, Model model,
-                              @AuthenticationPrincipal User user) {
-        Post post = new Post(title, anons, full_text, user.getUsername());
+    public String blogPostAdd(@RequestParam String title, String anons, String text, Model model,
+                              @AuthenticationPrincipal String customerName) {
+
+        Post post = new Post(title, anons, text, customerName);
         postRepository.save(post);
         return REDIRECT_BLOG;
     }
@@ -73,16 +72,16 @@ public class BlogController {
 
     @PostMapping("/blog/{id}/edit")
     public String blogUpdate(@PathVariable(value = "id") long id, @RequestParam String title,
-                             String anons, String full_text, Model model,
-                             @AuthenticationPrincipal User user) {
+                             String anons, String text, Model model,
+                             @AuthenticationPrincipal String customerName) {
 
         Post post = postRepository.findById(id).orElseThrow();
         post.setAnons(anons);
-        post.setFull_text(full_text);
+        post.setText(text);
         DATE_FORMAT.setTimeZone(TimeZone.getTimeZone(ASIA_NOVOSIBIRSK));
         post.setTime(DATE_FORMAT.format(new Date()));
         post.setTitle(title);
-        post.setUserName(user.getUsername());
+        post.setUserName(customerName);
         postRepository.save(post);
         return REDIRECT_BLOG;
     }

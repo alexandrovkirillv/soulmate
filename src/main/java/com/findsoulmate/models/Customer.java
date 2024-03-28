@@ -1,20 +1,20 @@
 package com.findsoulmate.models;
 
+import jakarta.persistence.*;
 import lombok.Data;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.*;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Data
-@Table(name = "usr")
+@Table(name = "customer")
 @EntityScan
-public class User implements UserDetails {
+public class Customer implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

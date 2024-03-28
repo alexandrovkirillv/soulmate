@@ -1,18 +1,19 @@
 plugins {
-	id 'org.springframework.boot' version '2.4.1'
-	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
 	id 'java'
+	id 'org.springframework.boot' version '3.1.4'
+	id 'io.spring.dependency-management' version '1.1.4'
 }
 
-group = 'findsoulmate'
-version = "${project.findProperty('buildVersion') ?: '1.0.0-SNAPSHOT'}"
-archivesBaseName = 'findsoulmate'
-sourceCompatibility = '15'
+group = 'com.soul'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = JavaVersion.VERSION_17
+}
 
 configurations {
-	developmentOnly
-	runtimeClasspath {
-		extendsFrom developmentOnly
+	compileOnly {
+		extendsFrom annotationProcessor
 	}
 }
 
@@ -21,21 +22,25 @@ repositories {
 }
 
 dependencies {
-	annotationProcessor group: 'org.projectlombok', name: 'lombok'
-	compileOnly group: 'org.projectlombok', name: 'lombok'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.security:spring-security-config:6.0.7'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-security'
-	implementation 'org.springframework.security:spring-security-test'
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	compile group: 'org.postgresql', name: 'postgresql', version: '42.1.4'
-	testImplementation('org.springframework.boot:spring-boot-starter-test') {
-		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-	}
-
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'io.micrometer:micrometer-registry-prometheus:1.12.0'
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.boot:spring-boot-starter-cache'
+	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+	implementation 'org.postgresql:postgresql:42.7.3'
+//	implementation 'org.liquibase:liquibase-core:4.24.0'
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+	testImplementation 'org.junit.jupiter:junit-jupiter:5.4.2'
 }
 
-test {
+tasks.named('test') {
 	useJUnitPlatform()
 }

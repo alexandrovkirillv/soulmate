@@ -3,7 +3,7 @@ package com.findsoulmate.models;
 import lombok.Data;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
@@ -18,7 +18,7 @@ public class Post implements Comparable<Post> {
     private Long id;
     private String title;
     private String anons;
-    private String full_text;
+    private String text;
     @Column(nullable = false)
     private String time;
     private int views;
@@ -30,10 +30,10 @@ public class Post implements Comparable<Post> {
     public Post() {
     }
 
-    public Post(String title, String anons, String full_text, String userName) {
+    public Post(String title, String anons, String text, String userName) {
         this.title = title;
         this.anons = anons;
-        this.full_text = full_text;
+        this.text = text;
         DATE_FORMAT.setTimeZone(TimeZone.getTimeZone(ASIA_NOVOSIBIRSK));
         this.time = DATE_FORMAT.format(new Date());
         this.userName = userName;

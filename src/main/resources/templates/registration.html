@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Регистрация</title>
+    <title>Registration</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
@@ -9,7 +9,7 @@
 <header th:insert="blocks/header :: header"></header>
 <div class="container mt-5 mb-5">
     <h1>Registration page</h1>
-    <div class="form-control is-invalid" th:if="${user != null}" ер th:text="${user}">
+    <div class="form-control is-invalid" th:if="${customer != null}" ер th:text="${customer}">
     </div>
     <form th:action="@{/registration}" autocomplete="off" method="post">
         <div class="row">
